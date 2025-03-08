@@ -20,7 +20,6 @@ def siglip_loss(logits):
     # pairwise sigmoid loss
     return -torch.sum(F.logsigmoid(labels * logits)) / n
 
-
 class CLIP(torch.nn.Module):
 
     def __init__(self,

@@ -81,6 +81,7 @@ class KTVICDataset(torch.utils.data.Dataset):
             #     # Exclude 'token_type_ids'
             # }
             instance["image"] = image
+            # print("instance", instance)
         return instance
 
     def __len__(self):

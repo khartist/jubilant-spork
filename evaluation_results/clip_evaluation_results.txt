@@ -1,0 +1,32 @@
+Model: ./models/clip_model.pth
+Image Encoder: mobile_net_v3_small
+Text Encoder: phobert-base
+Dataset: ktvic
+Using SigLIP: False
+
+Image-to-Text Retrieval:
+----------------------------------------
+PRECISION@1: 0.0072
+PRECISION@5: 0.0032
+RECALL@1: 0.0072
+RECALL@5: 0.0161
+F1@1: 0.0072
+F1@5: 0.0054
+MAP@1: 0.0072
+MAP@5: 0.0099
+NDCG@1: 0.0072
+NDCG@5: 0.0114
+
+Text-to-Image Retrieval:
+----------------------------------------
+PRECISION@1: 0.0018
+PRECISION@5: 0.0029
+RECALL@1: 0.0018
+RECALL@5: 0.0143
+F1@1: 0.0018
+F1@5: 0.0048
+MAP@1: 0.0018
+MAP@5: 0.0065
+NDCG@1: 0.0018
+NDCG@5: 0.0084
+
