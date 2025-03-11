@@ -104,7 +104,7 @@ def train_clip(args):
                          args.dataset_name,
                          args.dataset_path,
                          transforms=transforms_inference,
-                         split="train")
+                         split="test")
 
     val_loader = DataLoader(ds_val,
                             batch_size=min(args.batch_size, 256),
