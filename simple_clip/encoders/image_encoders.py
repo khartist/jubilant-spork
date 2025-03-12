@@ -40,7 +40,7 @@ class ImageEncoder(nn.Module):
 
         return self._prep_encoder(model) 
 
-    def __init__(self, model_name):
+    def __init__(self, model_name, unfreeze=False):
         super(ImageEncoder, self).__init__()
         if model_name == "mobile_net_v3_small":
             self.model = self.mobile_net_v3_small()
@@ -48,8 +48,12 @@ class ImageEncoder(nn.Module):
             self.model = self.tiny_vit_5m()
         else:
             raise ValueError(f"Model {model_name} not found")
-        for param in self.model.parameters():
-            param.requires_grad = False
+        if unfreeze:
+            for param in self.model.parameters():
+                param.requires_grad = True
+        else: 
+            for param in self.model.parameters():
+                param.requires_grad = False
 
     def forward(self, x):
         return self.model(x)
