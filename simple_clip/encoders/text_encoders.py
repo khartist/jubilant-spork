@@ -5,14 +5,18 @@ from sentence_transformers import SentenceTransformer
 class TextEncoder(nn.Module):
     tokenizer = AutoTokenizer.from_pretrained('vinai/phobert-base')
 
-    def __init__(self, model_name):
+    def __init__(self, model_name, unfreeze=False):
         super(TextEncoder, self).__init__()
         if model_name == "phobert-base":
             self.model = AutoModel.from_pretrained('vinai/phobert-base')
         elif model_name == "sentence_transformer":
             self.model = SentenceTransformer('keepitreal/vietnamese-sbert')
-        for param in self.model.parameters():
-            param.requires_grad = False
+        if unfreeze: 
+            for param in self.model.parameters():
+                param.requires_grad = True
+        else:
+            for param in self.model.parameters():
+                param.requires_grad = False
 
     def forward(self, input_ids, attention_mask):
         output = self.model(input_ids=input_ids, attention_mask=attention_mask)
