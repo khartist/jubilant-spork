@@ -34,8 +34,10 @@ def train_clip(args):
     else:
         init_tau, init_b = np.log(10), -10
 
-    image_encoder = get_image_encoder(args.image_encoder_name)
-    text_encoder = get_text_encoder(args.text_encoder_name)
+    unfreeze_encoders = args.unfreeze_encoders
+    image_encoder = get_image_encoder(args.image_encoder_name, unfreeze=unfreeze_encoders)
+    text_encoder = get_text_encoder(args.text_encoder_name, unfreeze=unfreeze_encoders)
+    
     model = CLIP(image_encoder, text_encoder, init_tau=init_tau, init_b=init_b)
 
     img = torch.rand(1, 3, args.image_size, args.image_size)
@@ -174,9 +176,9 @@ def train_clip(args):
                 print('acc/top1 texts', top1[0].item())
                 print('acc/top5 texts', top5[0].item())
 
-                print("I'm saving the model")
-                torch.save(model.state_dict(),
-                           f"{args.save_model_dir}/clip_model.pth")
+                # print("I'm saving the model")
+                # torch.save(model.state_dict(),
+                #            f"{args.save_model_dir}/clip_model.pth")
 
             if global_step % (args.log_every_n_steps * 10) == 10:
                 print("I'm validating the model")
