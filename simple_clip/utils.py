@@ -23,11 +23,11 @@ def get_dataset(text_encoder_name,
     raise Exception(f"Invalid dataset name {dataset_name} - options are [coco, sbucaptions, combined, yfcc7m]")
 
 
-def get_image_encoder(model_name):
-    return ImageEncoder(model_name)
+def get_image_encoder(model_name, unfreeze=False):
+    return ImageEncoder(model_name, unfreeze=unfreeze)
        
-def get_text_encoder(model_name):
-    return TextEncoder(model_name)
+def get_text_encoder(model_name, unfreeze=False):   
+    return TextEncoder(model_name, unfreeze=unfreeze)
 
 
 def accuracy(output, target, topk=(1, )):
