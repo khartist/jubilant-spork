@@ -60,6 +60,9 @@ parser.add_argument('--ckpt_path',
 parser.add_argument('--use_siglip',
                     action='store_true',
                     help='Whether to use siglip loss')
+parser.add_argument('--unfreeze_encoders', 
+                   action='store_true',
+                   help='Whether to unfreeze image and text encoders during training')
 
 
 def main():
